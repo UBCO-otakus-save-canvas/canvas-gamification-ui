@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CourseEvent, Question, UQJ, User, ReportQuestion} from '@app/_models';
+import {CourseEvent, Question, UQJ, User} from '@app/_models';
 import {AuthenticationService} from '@app/_services/api/authentication';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UqjService} from '@app/problems/_services/uqj.service';
@@ -8,14 +8,13 @@ import {CourseEventService} from '@app/course/_services/course-event.service';
 import {CourseService} from '@app/course/_services/course.service';
 
 @Component({
-    selector: 'app-course-question-snippet',
-    templateUrl: './course-question-snippet.component.html',
-    styleUrls: ['./course-question-snippet.component.scss']
+    selector: 'app-course-report-snippet',
+    templateUrl: './course-report-snippet.component.html',
+    styleUrls: ['./course-report-snippet.component.scss']
 })
-export class CourseQuestionSnippetComponent implements OnInit {
+export class CourseReportSnippetComponent implements OnInit {
     @Input() questions: Question[];
     @Input() uqjs: UQJ[];
-    reports: ReportQuestion[];
     user: User;
     event: CourseEvent;
     eventId: number;
@@ -89,9 +88,4 @@ export class CourseQuestionSnippetComponent implements OnInit {
         };
         this.uqjService.updateFavourite(updatedUqj);
     }
-
-    reportStatus(): void {
-
-    }
 }
-

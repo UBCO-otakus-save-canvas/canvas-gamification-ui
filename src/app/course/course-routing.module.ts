@@ -6,6 +6,7 @@ import {CourseRegisterComponent} from "@app/course/course-registration/course-re
 import {CourseComponent} from "@app/course/course.component";
 import {CourseEventCreateEditComponent} from "@app/course/course-event-create/course-event-create-edit.component";
 import {CourseQuestionSnippetComponent} from "@app/course/course-question-snippet/course-question-snippet.component";
+import {CourseReportSnippetComponent} from "@app/course/course-report-snippet/course-report-snippet.component";
 import {ProblemViewComponent} from "@app/problems/problem-view/problem-view.component";
 
 const routes = [
@@ -47,6 +48,11 @@ const routes = [
     {
         path: ':courseId/event/:eventId/problem/:id',
         component: ProblemViewComponent,
+        canActivate: [AuthGuard]
+    },
+    {
+        path: ':courseId/event/:eventId',
+        component: CourseReportSnippetComponent,
         canActivate: [AuthGuard]
     },
 ];

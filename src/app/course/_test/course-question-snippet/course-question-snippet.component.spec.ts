@@ -12,7 +12,7 @@ import {ActivatedRoute, convertToParamMap, RouterModule} from "@angular/router";
 import {MOCK_USER_TEACHER, MOCK_UQJ, MOCK_UQJ2} from "@app/course/_test/mock";
 import {RouterTestingModule} from "@angular/router/testing";
 
-describe('CourseQuestionSnippetComponent VALID EVENT', () => {
+describe('CourseReportSnippetComponent VALID EVENT', () => {
     let component: CourseQuestionSnippetComponent;
     let fixture: ComponentFixture<CourseQuestionSnippetComponent>;
 
@@ -65,7 +65,7 @@ describe('CourseQuestionSnippetComponent VALID EVENT', () => {
         expect(component.highlight('Wrong')).toEqual('highlight-danger');
     });
 });
-describe('CourseQuestionSnippetComponent INVALID EVENT', () => {
+describe('CourseReportSnippetComponent INVALID EVENT', () => {
     let component: CourseQuestionSnippetComponent;
     let fixture: ComponentFixture<CourseQuestionSnippetComponent>;
 

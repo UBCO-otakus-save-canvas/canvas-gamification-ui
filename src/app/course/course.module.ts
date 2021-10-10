@@ -32,6 +32,7 @@ import {CourseService} from "@app/course/_services/course.service";
 import {CourseEventService} from "@app/course/_services/course-event.service";
 import {TokenUseService} from "@app/course/_services/token-use.service";
 import {ConceptMapComponent} from "@app/course/concept-map/concept-map.component";
+import {CourseReportSnippetComponent} from "@app/course/course-report-snippet/course-report-snippet.component";
 
 @NgModule({
     declarations: [
@@ -41,6 +42,7 @@ import {ConceptMapComponent} from "@app/course/concept-map/concept-map.component
         CourseEventsSnippetComponent,
         TokenUseSnippetComponent,
         CourseQuestionSnippetComponent,
+        CourseReportSnippetComponent,
         CourseEventCreateEditComponent,
         LeaderBoardComponent,
         ConceptMapComponent
