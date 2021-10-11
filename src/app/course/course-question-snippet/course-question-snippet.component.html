@@ -56,6 +56,21 @@
                                     <mat-icon>favorite</mat-icon>
                                 </button>
                             </ng-container>
+
+
+                            <ng-container *ngIf = "!uqj.is_favourite">
+                                <button type="button" mat-icon-button
+                                        (click)="reportStatus(reportModal,uqj)">
+                                    <mat-icon>outlined_flag</mat-icon>
+                                </button>
+                            </ng-container>
+                            <ng-container *ngIf = "uqj.is_favourite">
+                                <button type="button" mat-icon-button
+                                        (click)="reportStatus(reportModal,uqj)">
+                                    <mat-icon>flag</mat-icon>
+                                </button>
+                            </ng-container>
+
 <!--                            <ng-container *ngIf = "reports.unclear_description">-->
 
 <!--                            </ng-container>-->
@@ -80,4 +95,39 @@
             </tbody>
         </table>
     </div>
+
+    <ng-template #reportModal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Report Question</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <form [formGroup]="formGroup" (ngSubmit)="reportQuestion()">
+                <div class="form-group">
+                    <label for="reason">Report Reason:</label>
+                    <select class="form-control" name="reason" formControlName="reason" id="reason">
+
+                        <option [value]="">Unclear description</option>
+                        <option [value]="">this</option>
+                        <option [value]="">this</option>
+                        <option [value]="">this</option>
+
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" name="description" formControlName="description" id="description"></textarea>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss()">Cancel</button>
+            <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">
+                Report
+            </button>
+        </div>
+    </ng-template>
+
 </ng-container>

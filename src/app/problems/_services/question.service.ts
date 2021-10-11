@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Question} from '@app/_models';
+import {Question, ReportQuestion} from '@app/_models';
 import {PaginatedResult} from '@app/_models/paginatedResult';
 import {catchError} from 'rxjs/operators';
 import {ApiService} from "@app/_services/api.service";
@@ -9,6 +9,7 @@ import {ProblemSetFormData} from "@app/problems/_forms/problem-set.form";
 import {McqFormData} from "@app/problems/_forms/mcq.form";
 import {JavaFormData} from "@app/problems/_forms/java.form";
 import {ParsonsFormData} from "@app/problems/_forms/parsons.form";
+import {ReportQuestionForm} from "@app/course/_forms/report-question.form";
 
 @Injectable({
     providedIn: 'root'
@@ -144,4 +145,11 @@ export class QuestionService {
             .pipe(catchError(this.apiService.handleError<HttpResponse<Question>>(
                 'Error occurred while adding question')));
     }
+
+    getQuestionReport(): Observable<ReportQuestion>{
+        const url = this.apiService.getURL('report-question');
+        return this.http.get<ReportQuestion>(url)
+            .pipe(catchError(this.apiService.handleError<ReportQuestion>('Error occurred while fetching question')));
+    }
+
 }

@@ -124,4 +124,5 @@ export class CourseService {
             .get<Course>(url)
             .pipe(catchError(this.apiService.handleError<Course>(`Unable to load course`, null)));
     }
+
 }

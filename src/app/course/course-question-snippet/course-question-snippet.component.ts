@@ -3,9 +3,15 @@ import {CourseEvent, Question, UQJ, User, ReportQuestion} from '@app/_models';
 import {AuthenticationService} from '@app/_services/api/authentication';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UqjService} from '@app/problems/_services/uqj.service';
-import {forkJoin} from 'rxjs';
+import {forkJoin, Subject} from 'rxjs';
 import {CourseEventService} from '@app/course/_services/course-event.service';
 import {CourseService} from '@app/course/_services/course.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {AbstractControl, FormBuilder, FormGroup} from '@angular/forms';
+import {ReportQuestionForm} from "@app/course/_forms/report-question.form";
+import {debounceTime, distinctUntilChanged} from "rxjs/operators";
+import {MatTableDataSource} from "@angular/material/table";
+import {QuestionService} from "@app/problems/_services/question.service";
 
 @Component({
     selector: 'app-course-question-snippet',
@@ -20,19 +26,45 @@ export class CourseQuestionSnippetComponent implements OnInit {
     event: CourseEvent;
     eventId: number;
     courseId: number;
+    formGroup: FormGroup;
+    questionId: number;
+
+
+    paramChanged: Subject<{
+        search: string,
+        reason: string,
+    }> = new Subject<{
+        search: string,
+        reason: string,
+    }>();
 
     constructor(private authenticationService: AuthenticationService,
                 private router: Router,
                 private route: ActivatedRoute,
                 private uqjService: UqjService,
                 private courseEventService: CourseEventService,
-                private courseService: CourseService) {
+                private courseService: CourseService,
+                private modalService: NgbModal,
+                private questionService: QuestionService,
+                private builder: FormBuilder) {
         this.authenticationService.currentUser.subscribe(user => this.user = user);
+        /*this.paramChanged.pipe(debounceTime(300), distinctUntilChanged()).subscribe(options => {
+            this.questionService.getQuestions(options).subscribe(paginatedQuestions => {
+                this.questions = paginatedQuestions.results;
+                this.questionsSource = new MatTableDataSource(this.questions);
+                this.questionsLength = paginatedQuestions.count;
+            });
+        });*/
+    }
+
+    get form(): { [p: string]: AbstractControl } {
+        return this.formGroup.controls;
     }
 
     ngOnInit(): void {
         this.courseId = +this.route.snapshot.paramMap.get('courseId') || null;
         this.eventId = +this.route.snapshot.paramMap.get('eventId') || null;
+        this.formGroup = ReportQuestionForm.createForm();
         if (this.eventId && this.courseId) { // if this snippet is an event-view
             this.courseService.validateEvent(this.courseId, this.eventId).subscribe(response => {
                 if (response.success) {
@@ -90,7 +122,15 @@ export class CourseQuestionSnippetComponent implements OnInit {
         this.uqjService.updateFavourite(updatedUqj);
     }
 
-    reportStatus(): void {
+    reportStatus(content: unknown, uqj: UQJ): void {
+        this.questionId = uqj.question.id;
+        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true});
+    }
+
+
+
+    reportQuestion(): void {
+        //TODO
 
     }
 }
