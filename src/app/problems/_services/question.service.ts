@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Question, ReportQuestion} from '@app/_models';
+import {Question, QuestionReport} from '@app/_models';
 import {PaginatedResult} from '@app/_models/paginatedResult';
 import {catchError} from 'rxjs/operators';
 import {ApiService} from "@app/_services/api.service";
@@ -146,10 +146,11 @@ export class QuestionService {
                 'Error occurred while adding question')));
     }
 
-    getQuestionReport(): Observable<ReportQuestion>{
-        const url = this.apiService.getURL('report-question');
-        return this.http.get<ReportQuestion>(url)
-            .pipe(catchError(this.apiService.handleError<ReportQuestion>('Error occurred while fetching question')));
+    getQuestionReport(): Observable<QuestionReport>{
+        const url = this.apiService.getURL('question-report');
+        console.log(url);
+        return this.http.get<QuestionReport>(url)
+            .pipe(catchError(this.apiService.handleError<QuestionReport>('Error occurred while fetching question')));
     }
 
 }

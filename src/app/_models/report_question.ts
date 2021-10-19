@@ -1,13 +1,10 @@
-export interface ReportQuestion {
-    user_id: number;
-    question_id: number;
-    report_timestamp: Date;
-    unclear_description: boolean;
-    test_case_incorrect_answer: boolean;
-    test_case_violate_constraints: boolean;
-    poor_test_coverage: boolean;
-    language_specific_issue: boolean;
-    other: boolean;
+export interface QuestionReport {
+    id : number;
+    created: Date;
+    updated: Date;
+    description : string;
     report_text: string;
 }
+
+
 

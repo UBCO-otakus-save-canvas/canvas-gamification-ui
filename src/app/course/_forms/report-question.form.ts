@@ -7,8 +7,8 @@ export class ReportQuestionForm {
     static createForm(): FormGroup {
         const builder = new FormBuilder();
         return builder.group({
-            search: new FormControl(''),
-            reason: new FormControl(''),
+            description: new FormControl(''),
+            description_text: new FormControl(''),
         });
     }
 
@@ -22,6 +22,6 @@ export class ReportQuestionForm {
 }
 
 export interface ReportFormData {
-    search: string,
-    reason: string,
+    description: string,
+    description_text: string,
 }

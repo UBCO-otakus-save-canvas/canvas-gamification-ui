@@ -103,31 +103,34 @@
                 <span aria-hidden="true">×</span>
             </button>
         </div>
-
+        <form [formGroup]="formGroup" (ngSubmit)="reportQuestion()">
         <div class="modal-body">
-            <form [formGroup]="formGroup" (ngSubmit)="reportQuestion()">
                 <div class="form-group">
-                    <label for="reason">Report Reason:</label>
-                    <select class="form-control" name="reason" formControlName="reason" id="reason">
-
-                        <option [value]="">Unclear description</option>
-                        <option [value]="">this</option>
-                        <option [value]="">this</option>
-                        <option [value]="">this</option>
-
+                    <label for="description">Report Reason:</label>
+                    <select class="form-control" name="description" formControlName="description" id="description">
+                        <option value="unclear_description">Unclear description</option>
+                        <option value="test_case_incorrect_answer">Test case incorrect answer</option>
+                        <option value="test_case_violate_constraints">Test case violate constraints</option>
+                        <option value="poor_test_coverage">Poor test coverage</option>
+                        <option value="language_specific_issue">Language specific issue</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea class="form-control" name="description" formControlName="description" id="description"></textarea>
+                    <textarea class="form-control" name="description_text" formControlName="description_text" id="description_text"></textarea>
                 </div>
-            </form>
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-danger" (click)="modal.dismiss()">Cancel</button>
-            <button type="button" class="btn btn-outline-success" (click)="modal.close('Save click')">
+            <button type="submit" class="btn btn-outline-success">
                 Report
             </button>
+            <!--<button type="submit" class="btn btn-outline-success" (click)="modal.close('Save click')">
+                Report
+            </button>-->
         </div>
+        </form>
     </ng-template>
 
 </ng-container>

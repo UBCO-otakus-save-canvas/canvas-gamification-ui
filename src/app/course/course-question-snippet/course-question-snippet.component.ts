@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {CourseEvent, Question, UQJ, User, ReportQuestion} from '@app/_models';
+import {CourseEvent, Question, UQJ, User, QuestionReport} from '@app/_models';
 import {AuthenticationService} from '@app/_services/api/authentication';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UqjService} from '@app/problems/_services/uqj.service';
@@ -21,7 +21,7 @@ import {QuestionService} from "@app/problems/_services/question.service";
 export class CourseQuestionSnippetComponent implements OnInit {
     @Input() questions: Question[];
     @Input() uqjs: UQJ[];
-    reports: ReportQuestion[];
+    reports: QuestionReport[];
     user: User;
     event: CourseEvent;
     eventId: number;
@@ -31,11 +31,11 @@ export class CourseQuestionSnippetComponent implements OnInit {
 
 
     paramChanged: Subject<{
-        search: string,
-        reason: string,
+        description: string,
+        description_text: string,
     }> = new Subject<{
-        search: string,
-        reason: string,
+        description: string,
+        description_text: string,
     }>();
 
     constructor(private authenticationService: AuthenticationService,
@@ -128,9 +128,10 @@ export class CourseQuestionSnippetComponent implements OnInit {
     }
 
 
-
     reportQuestion(): void {
         //TODO
+        console.log("bruh");
+        this.questionService.getQuestionReport().subscribe();
 
     }
 }
