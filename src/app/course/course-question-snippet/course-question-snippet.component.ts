@@ -90,6 +90,5 @@ export class CourseQuestionSnippetComponent implements OnInit {
             .subscribe(() => {
                 this.toastr.success('The action was performed successfully.');
             });
-
     }
 }
