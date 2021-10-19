@@ -20,6 +20,7 @@ export class CourseQuestionSnippetComponent implements OnInit {
     event: CourseEvent;
     eventId: number;
     courseId: number;
+    color: string;
 
     constructor(private authenticationService: AuthenticationService,
                 private router: Router,
