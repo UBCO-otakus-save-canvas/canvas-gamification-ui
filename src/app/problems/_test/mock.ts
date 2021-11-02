@@ -1,5 +1,5 @@
 import {Category, Course, CourseEvent, Question, STATUS, UQJ} from '@app/_models';
-import {QuestionSubmission} from '@app/_models/question_submission';
+import {QuestionSubmission, StatusMessage} from '@app/_models/question_submission';
 import {Difficulty} from "@app/_models/difficulty";
 import {McqFormData} from "@app/problems/_forms/mcq.form";
 import {JavaFormData} from "@app/problems/_forms/java.form";
@@ -340,6 +340,7 @@ export const MOCK_QUESTION_SUBMISSION: QuestionSubmission = {
     formatted_tokens_received: '',
     token_value: 1,
     get_decoded_results: [],
+    get_status_message: StatusMessage.ACCEPTED,
     get_decoded_stderr: '',
     get_failed_test_results: [],
     get_formatted_test_results: '',
@@ -368,6 +369,7 @@ export const MOCK_QUESTION_SUBMISSION_2: QuestionSubmission = {
     formatted_tokens_received: '',
     token_value: 1,
     get_decoded_results: [],
+    get_status_message: StatusMessage.ACCEPTED,
     get_decoded_stderr: '',
     get_failed_test_results: [],
     get_formatted_test_results: '',
@@ -400,7 +402,8 @@ export const MOCK_MCQ_FORM_DATA: McqFormData = {
     category: null,
     variables: null,
     visible_distractor_count: null,
-    choices: null
+    choices: null,
+    is_verified: true
 };
 
 export const MOCK_JAVA_FORM_DATA: JavaFormData = {
@@ -412,7 +415,8 @@ export const MOCK_JAVA_FORM_DATA: JavaFormData = {
     category: null,
     variables: [],
     junit_template: null,
-    input_files: null
+    input_files: null,
+    is_verified: true
 };
 
 export const MOCK_PARSONS_FORM_DATA: ParsonsFormData = {
@@ -428,7 +432,8 @@ export const MOCK_PARSONS_FORM_DATA: ParsonsFormData = {
         name: 'test',
         lines: ['a', 'b', 'c'],
         compile: true,
-    }]
+    }],
+    is_verified: true
 };
 
 // TODO - Determine a more specific type.
